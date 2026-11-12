@@ -1,0 +1,29 @@
+<template>
+    <lightning-card title="Active Tokens" icon-name="standard:orders">
+        <template if:true={isLoading}>
+            <lightning-spinner alternative-text="Loading tokens..." size="small"></lightning-spinner>
+        </template>
+        <template if:false={isLoading}>
+            <template if:true={error}>
+                <div class="slds-p-around_medium slds-text-color_error">
+                    <p><strong>Error loading tokens:</strong> {errorMessage}</p>
+                </div>
+            </template>
+            <template if:false={error}>
+                <template if:true={hasTokens}>
+                    <lightning-datatable
+                        key-field="id"
+                        data={tokens}
+                        columns={columns}
+                        hide-checkbox-column>
+                    </lightning-datatable>
+                </template>
+                <template if:false={hasTokens}>
+                    <div class="slds-p-around_medium slds-text-align_center">
+                        <p>No active tokens found.</p>
+                    </div>
+                </template>
+            </template>
+        </template>
+    </lightning-card>
+</template>

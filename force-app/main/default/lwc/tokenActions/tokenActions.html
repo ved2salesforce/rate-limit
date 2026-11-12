@@ -1,0 +1,41 @@
+<template>
+    <lightning-card title="Token Actions" icon-name="standard:task2">
+        <!-- Create Token Form -->
+        <div class="slds-p-around_medium">
+            <h2 class="slds-text-heading_small slds-m-bottom_small">Create Token</h2>
+            <lightning-input
+                label="Token Value"
+                type="text"
+                value={tokenValue}
+                onchange={handleValueChange}
+                class="slds-m-bottom_small">
+            </lightning-input>
+            <lightning-input
+                label="Expiry Date"
+                type="datetime-local"
+                value={expiryDate}
+                onchange={handleExpiryChange}
+                class="slds-m-bottom_small">
+            </lightning-input>
+            <lightning-button
+                label="Create Token"
+                variant="brand"
+                onclick={handleCreateToken}
+                disabled={isCreating}>
+            </lightning-button>
+        </div>
+
+        <!-- Revoke Token Section -->
+        <template if:true={tokenId}>
+            <div class="slds-p-around_medium slds-border_top">
+                <h2 class="slds-text-heading_small slds-m-bottom_small">Revoke Token</h2>
+                <lightning-button
+                    label="Revoke This Token"
+                    variant="destructive"
+                    onclick={handleRevokeToken}
+                    disabled={isRevoking}>
+                </lightning-button>
+            </div>
+        </template>
+    </lightning-card>
+</template>
